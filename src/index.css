@@ -43,3 +43,39 @@ body {
     border-radius: 1rem;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
+
+
+.form,
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.form label {
+    color: var(--black);
+}
+
+.form select {
+    background-color: #ECEBEB;
+    border: none;
+    padding: 1rem;
+    border-radius: 1rem;
+    font-size: 1.8rem;
+}
+
+.form [type="submit"] {
+    background-color: var(--primary);
+    color: var(--black);
+    border: none;
+    padding: 1rem;
+    font-weight: 900;
+    cursor: pointer;
+    text-transform: uppercase;
+    margin-top: 2rem;
+    transition: background-color 300ms ease;
+}
+
+.form [type="submit"]:hover {
+    background-color: #0CB387;
+}
