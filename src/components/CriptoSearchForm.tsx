@@ -1,13 +1,33 @@
+import { useCryptoStore } from "../store"
 import { currencies } from "../data"
+import { useState } from "react"
+import type { Pair } from "../types"
 
 
 
 export const CriptoSearchForm = () => {
+    const cryptocurrencies = useCryptoStore((state)=>state.cryptocurrencies)
+    const [pair, setPair] = useState<Pair>({
+        currency: '',
+        cryptocurrency: ''
+    })
+
+    const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setPair({
+            ...pair,
+            [e.target.name]: e.target.value
+        })
+    }
+
     return (
         <form className="form">
             <div className="field">
                 <label htmlFor="currency">Moneda:</label>
-                <select name="currency" id="currency">
+                <select 
+                    name="currency" 
+                    id="currency"
+                    onChange={handleChange}
+                >
                     <option value="">-- Seleccione --</option>
                     {currencies.map(currency => (
                         <option key={currency.code} value={currency.code}>{currency.name}</option>
@@ -16,9 +36,19 @@ export const CriptoSearchForm = () => {
             </div>
 
             <div className="field">
-                <label htmlFor="criptocurrency">Criptooneda:</label>
-                <select name="criptocurrency" id="criptocurrency">
+                <label htmlFor="cryptocurrency">Criptooneda:</label>
+                <select
+                    name="cryptocurrency" 
+                    id="cryptocurrency"
+                    onChange={handleChange}
+                >
                     <option value="">-- Seleccione --</option>
+                    {cryptocurrencies.map(crypto => (
+                        <option 
+                            key={crypto.CoinInfo.FullName}
+                            value={crypto.CoinInfo.Name}
+                        >{crypto.CoinInfo.FullName}</option>
+                    ))}
                 </select>
             </div>
 
