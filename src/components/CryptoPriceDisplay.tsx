@@ -1,10 +1,12 @@
 import { useMemo } from "react"
 import { useCryptoStore } from "../store"
+import { Spinner } from "./Spinner"
 
 
 export const CryptoPriceDisplay = () => {
 
     const result = useCryptoStore((state) => state.result)
+    const loading = useCryptoStore((state) => state.loading)
     const hasResult = useMemo(() => {
         if (!result || Object.keys(result).length === 0) return false
         return !Object.values(result).includes('')
@@ -12,7 +14,7 @@ export const CryptoPriceDisplay = () => {
 
     return (
         <div className="result-wrapper">
-            {hasResult && (
+            {loading ? <Spinner /> : hasResult && (
                 <>
                     <h2>Cotización</h2>
                     <div className="result">
@@ -22,10 +24,10 @@ export const CryptoPriceDisplay = () => {
                         />
                         <div>
                             <p>El precio es de: <span>{result.PRICE}</span></p>
-                            <p>El precio es de: <span>{result.HIGHDAY}</span></p>
-                            <p>El precio es de: <span>{result.LOWDAY}</span></p>
-                            <p>El precio es de: <span>{result.CHANGEPCT24HOUR}</span></p>
-                            <p>El precio es de: <span>{result.LASTUPDATE}</span></p>
+                            <p>Precio más alto del dia: <span>{result.HIGHDAY}</span></p>
+                            <p>Precio más bajo del dia <span>{result.LOWDAY}</span></p>
+                            <p>Variación últimas 24 horas: <span>{result.CHANGEPCT24HOUR}</span></p>
+                            <p>Ultima actualización: <span>{result.LASTUPDATE}</span></p>
                         </div>
                     </div>
                 </>
