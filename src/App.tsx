@@ -3,6 +3,7 @@ import { CriptoSearchForm } from "./components/CriptoSearchForm"
 import { useCryptoStore } from "./store"
 import { CryptoPriceDisplay } from "./components/CryptoPriceDisplay"
 import './Spinner.css'
+import { Footer } from "./components/Footer"
 
 
 export const App = () => {
@@ -14,7 +15,7 @@ export const App = () => {
 
   return (
     <>
-    <div className="container">
+    <main className="container">
       <h1 className="app-title">
         Cotizador de <span>Cripto Monedas</span>
       </h1>
@@ -22,9 +23,9 @@ export const App = () => {
       <div className="content">
         <CriptoSearchForm />
         <CryptoPriceDisplay />
-        
       </div>
-    </div>
+    </main>
+    <Footer />
   </>
   )
 }
